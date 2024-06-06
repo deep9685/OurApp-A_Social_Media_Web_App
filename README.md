@@ -11,6 +11,8 @@ This project is a comprehensive social media application developed as part of a 
     + Search Functionality: Users can search for other users and view their profiles.
     + Responsive Design: The application is designed to be responsive, ensuring a smooth experience on both desktop and mobile devices.
 
+    + Hello
+    
 ## Technologies Used :-
     * Backend: Node.js, Express.js
     * Database: MongoDB
