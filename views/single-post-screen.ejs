@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Social Media app</title>
+    <link rel="stylesheet" href="/stylesheets/main.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+</head>
+<body>
+    <div class="wrapper m-0 p-0 box-border">
+        
+        <%- include('./partials/userNav') %>
+
+        <div class="w-full h-auto flex justify-center">
+            <div class="flex flex-col w-[50%] mt-16 gap-y-3">
+                <div class="hidden w-full p-3 bg-green-200">
+                    <p class="text-center text-xl text-green-800">New post successfully created</p>
+                </div>
+
+                <div class="flex justify-between">
+                    <div>
+                        <h2 class="text-4xl"><%= post.title %></h2>
+                        <div class="flex items-center gap-x-1 mt-1">
+                            <i class="material-icons text-2xl cursor-pointer text-blue-600">account_circle</i>
+                            <p class="text-xs text-gray-500 ">Posted by <span class="text-blue-500"><%= user.userName %></span> on <span><%= post.createdAt.toISOString().split('T')[0]; %></span></p>
+                        </div>
+                    </div>
+
+                    <% if(isPostOwner) { %>
+                        <div class="flex gap-x-3">
+                            <!-- Edit Icon -->
+                            <i class="fas fa-edit text-blue-600 cursor-pointer" title="edit" id="editIcon" data-post-id="<%= post._id %>"></i>
+    
+                            <!-- Delete Icon -->
+                            <i class="fas fa-trash-alt text-red-600 cursor-pointer" title="delete" id="deleteIcon" data-post-id="<%= post._id %>"></i>
+                        </div>    
+                    <% } %>
+                </div>  
+
+                <div>
+                    <p class="text-xl "><%= post.content %></p>
+                </div>
+            </div>
+        </div>
+        
+
+        <%- include('./partials/footer') %>
+    <script src="/javascripts/single-post-screen.js"></script>
+    </div>
+</body>
+</html>

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Social Media app</title>
+    <link rel="stylesheet" href="/stylesheets/main.css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="wrapper m-0 p-0 box-border">
+      <%- include('./partials/userNav') %>
+
+      <div class="w-full h-auto flex flex-col justify-center">
+        <div
+          class="flex flex-col w-[50%] mt-16 gap-y-3 border-b-2 border-gray-300 m-auto"
+        >
+          <div class="flex gap-x-2 items-center">
+            <i class="material-icons text-5xl cursor-pointer text-black"
+              >account_circle</i
+            >
+            <h2 class="font-sans text-2xl text-black"><%= userName %></h2>
+
+            <% if(!otherUser) {%>
+
+            <button
+              id="followButton"
+              class="px-3 py-1 rounded-sm text-white"
+            ></button>
+
+            <% } %>
+          </div>
+
+          <div class="flex gap-x-3 items-center transition-all ease-in duration-100 ">
+            <p id="userPost" class="text-blue-600 text-xl cursor-pointer shadow-sm border-2 p-1">
+              Posts: <span><%= userPosts.length %></span>
+            </p>
+            <p id="userFollower" class="text-blue-600 text-xl cursor-pointer">
+              Followers: <span><%= user.followers.length %></span>
+            </p>
+            <p id="userFollowing" class="text-blue-600 text-xl cursor-pointer">
+              Following: <span><%= user.following.length %></span>
+            </p>
+          </div>
+
+          
+        </div>
+
+        <!-- post div -->
+
+      <div id="userPostDiv" class="flex flex-col gap-y-2 mt-3 w-[50%] m-auto cursor-pointer">
+        <% userPosts.forEach(post => { %>
+
+        <div  data-post-id="<%= post._id %>" class="singlePost flex items-center p-2 shadow-md border-1 border-gray-500 gap-1">
+          <i class="material-icons text-2xl cursor-pointer text-blue-600"
+            >account_circle</i
+          >
+          <p class="text-xs text-gray-500">
+            <span class="text-xl font-semibold text-black"><%= post.title %></span> on
+            <span><%= post.createdAt.toISOString().split('T')[0]; %></span>
+          </p>
+        </div>
+
+        <% }); %>
+      </div>
+
+      <div id="userFollowerDiv" class=" hidden text-black text-xl flex-col gap-y-2 mt-3 w-[50%] m-auto">
+       
+          <% followers.forEach(user => { %>
+            <div data-follower-id="<%= user._id %>" class="singleFollower flex items-center p-2 shadow-md border-1 border-gray-500 gap-1 cursor-pointer">
+              <p><%= user.userName %></p>
+            </div>
+          <% }) %>
+        
+      </div>
+
+      <div id="userFollowingDiv" class="hidden text-black text-xl flex-col gap-y-2 mt-3 w-[50%] m-auto">
+
+        <% following.forEach(user => { %>
+            <div data-following-id="<%= user._id %>" class="singleFollowing flex items-center p-2 shadow-md border-1 border-gray-500 gap-1 cursor-pointer">
+              <p><%= user.userName %></p>
+            </div>
+          <% }) %>
+        
+      </div>
+
+      </div>
+      
+
+      <%- include('./partials/footer') %>
+    </div>
+    <script src="/javascripts/profile.js"></script>
+    <script>
+
+      const userPostDiv = document.getElementById('userPostDiv');
+
+      if(userPostDiv){
+        userPostDiv.addEventListener('click', (event) => {
+          const singlePost = event.target.closest('.singlePost');
+
+          if(singlePost){
+            const postId = singlePost.getAttribute('data-post-id');
+
+            if(postId){
+              window.location.href = `/dashboard/${postId}`;       
+            }
+          }
+        })
+      }
+
+      const userFollowerDiv = document.getElementById('userFollowerDiv');
+
+      if(userFollowerDiv){
+        userFollowerDiv.addEventListener('click', (event) => {
+          console.log("I am in follower div");
+          const singleFollower = event.target.closest('.singleFollower');
+
+          if(singleFollower){
+            const followerId = singleFollower.getAttribute('data-follower-id');
+            
+            console.log(followerId);
+
+            if(followerId){
+              window.location.href = `/dashboard/profile/${followerId}`;
+            }
+          }
+        });
+      }
+
+      const userFollowingDiv = document.getElementById('userFollowingDiv');
+
+      if(userFollowingDiv){
+        userFollowingDiv.addEventListener('click', (event) => {
+          console.log("I am in following div");
+          const singleFollowing = event.target.closest('.singleFollowing');
+
+          if(singleFollowing){
+            const followingId = singleFollowing.getAttribute('data-following-id');
+            
+            console.log(followingId);
+
+            if(followingId){
+              window.location.href = `/dashboard/profile/${followingId}`;
+            }
+          }
+        });
+      }
+
+      // singlePost.addEventListener('click', function() {
+      //   const postId = singlePost.dataset.postId;
+
+      //   window.location.href = `/dashboard/${postId}`;
+      // });
+    </script>
+  </body>
+</html>

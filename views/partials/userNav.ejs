@@ -1,0 +1,141 @@
+<div
+  class="navbar flex h-14 bg-gray-900 justify-between items-center px-4 sm:px-8"
+>
+  <div>
+    <h2 id="OurAppLogo" class="text-white text-2xl cursor-pointer">OurApp</h2>
+  </div>
+
+  <div class="flex items-center gap-3 text-white">
+    <i
+      id="searchIcon"
+      class="fas fa-search text-base cursor-pointer"
+      title="Search"
+    ></i>
+
+    <!-- Search Modal -->
+    <div
+      id="searchModal"
+      class="fixed inset-0 bg-gray-800 bg-opacity-75 hidden justify-center items-center z-50"
+    >
+      <div class="bg-white p-4 rounded-lg w-11/12 sm:w-1/2 h-fit">
+        <div class="flex justify-between items-center">
+          <h2 class="text-xl text-black">Search Users</h2>
+          <button id="closeModal" class="text-red-600 text-2xl">&times;</button>
+        </div>
+        <input
+          id="searchBar"
+          class="border border-gray-400 rounded-md py-2 px-4 text-xl w-full mt-4 text-black"
+          type="text"
+          placeholder="Search users..."
+        />
+        <div id="searchResults" class="w-full h-auto mt-4"></div>
+      </div>
+    </div>
+
+    <i
+      id="chatIcon"
+      class="fas fa-comment text-base cursor-pointer"
+      title="Chat"
+    ></i>
+
+    <!-- Chat Panel -->
+    <div
+      id="chatPanel"
+      class="fixed inset-x-0 bottom-0 transform translate-y-full transition-transform duration-300 ease-in-out text-black z-50"
+    >
+      <div
+        class="flex flex-col w-full sm:w-[300px] h-[400px] bg-white shadow-lg mx-auto sm:ml-4 mb-4 rounded-lg"
+      >
+        <div class="flex bg-gray-800 justify-between items-center p-2">
+          <p class="text-white text-xl">Chat</p>
+          <button id="closeChatPanel" class="text-gray-600 hover:text-gray-900">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+
+        <!-- user message displayed here -->
+        <div class="flex-1 overflow-y-auto bg-white" id="chatBox"></div>
+
+        <div class="flex p-2">
+          <input
+            type="text"
+            id="messageInput"
+            class="flex-1 border rounded-l-lg p-2"
+            placeholder="Type a message"
+          />
+          <button
+            id="sendButton"
+            class="bg-blue-600 text-white px-4 rounded-r-lg"
+          >
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <i
+      id="profileLogo"
+      class="material-icons text-3xl cursor-pointer"
+      title="My Profile"
+      >account_circle</i
+    >
+
+    <a
+      class="px-3 py-1 bg-green-600 rounded-sm hidden sm:block"
+      href="/dashboard/create-post"
+      >Create Post</a
+    >
+    <a
+      class="px-3 py-1 bg-gray-500 rounded-sm hidden sm:block"
+      href="/user/logout"
+      >Sign Out</a
+    >
+  </div>
+</div>
+
+<script src="/javascripts/userNav.js"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+  document.getElementById("chatIcon").addEventListener("click", () => {
+    const chatPanel = document.getElementById("chatPanel");
+    chatPanel.classList.remove("translate-y-full");
+    chatPanel.classList.add("translate-y-0");
+  });
+
+  document.getElementById("closeChatPanel").addEventListener("click", () => {
+    const chatPanel = document.getElementById("chatPanel");
+    chatPanel.classList.remove("translate-y-0");
+    chatPanel.classList.add("translate-y-full");
+  });
+
+  const socket = io();
+
+  const sendBtn = document.getElementById("sendButton");
+  const messageInput = document.getElementById("messageInput");
+  const chatBox = document.getElementById("chatBox");
+
+  const currentUsername = localStorage.getItem("loggedUserName"); // Replace this with the actual logged-in user's username
+
+  console.log(currentUsername);
+
+  sendBtn.addEventListener("click", (e) => {
+    const message = messageInput.value;
+    messageInput.value = "";
+    console.log(message);
+    socket.emit("user-message", { username: currentUsername, message });
+  });
+
+  socket.on("message", ({ username, message }) => {
+    const p = document.createElement("p");
+    p.classList.add("message");
+
+    if (username === currentUsername) {
+      p.classList.add("text-right", "bg-blue-100"); // Sent message styles
+    } else {
+      p.classList.add("text-left", "bg-gray-100"); // Received message styles
+    }
+
+    p.innerHTML = `<strong>${username}:</strong> ${message}`;
+    chatBox.appendChild(p);
+  });
+</script>

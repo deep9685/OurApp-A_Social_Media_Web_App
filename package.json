@@ -1,0 +1,48 @@
+{
+  "name": "our-social-app",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@sendgrid/mail": "^8.1.1",
+    "axios": "^1.6.7",
+    "babel-loader": "^9.1.3",
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^5.1.0",
+    "cookie-parser": "~1.4.4",
+    "cors": "^2.8.5",
+    "csurf": "^1.11.0",
+    "debug": "~2.6.9",
+    "dompurify": "^3.0.9",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.9",
+    "express": "~4.16.1",
+    "express-flash": "^0.0.2",
+    "express-session": "^1.18.0",
+    "http-errors": "~1.6.3",
+    "jade": "~1.11.0",
+    "jsonwebtoken": "^9.0.2",
+    "marked": "^12.0.1",
+    "md5": "^2.3.0",
+    "mongodb": "^6.6.1",
+    "mongoose": "^8.3.4",
+    "morgan": "~1.9.1",
+    "nodemon": "^3.1.0",
+    "sanitize-html": "^2.12.1",
+    "socket.io": "^4.7.4",
+    "socket.io-client": "^4.7.5",
+    "validator": "^13.11.0",
+    "webpack": "^5.90.3",
+    "webpack-cli": "^5.1.4"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.38",
+    "tailwindcss": "^3.4.3"
+  }
+}
