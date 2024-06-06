@@ -4,19 +4,19 @@
 This project is a comprehensive social media application developed as part of a major academic project. It encompasses a wide range of features typical of modern social networks, including user authentication, post creation and management, follower relationships, and real-time chat functionality. Built using Node.js, Express, MongoDB, and Socket.io, the application is designed to provide a seamless and interactive user experience.
 
 ## Features :-
-    * User Authentication: Secure login and registration system with password hashing.
-    * Post Management: Users can create, view, and manage their posts.
-    * Follower System: Users can follow and unfollow other users, with follower and following lists dynamically updated.
-    * Real-Time Chat: Integrated chat functionality using Socket.io, allowing users to communicate in real-time.
-    * Search Functionality: Users can search for other users and view their profiles.
-    * Responsive Design: The application is designed to be responsive, ensuring a smooth experience on both desktop and mobile devices.
+    ### User Authentication: Secure login and registration system with password hashing.
+    ### Post Management: Users can create, view, and manage their posts.
+    ### Follower System: Users can follow and unfollow other users, with follower and following lists dynamically updated.
+    ### Real-Time Chat: Integrated chat functionality using Socket.io, allowing users to communicate in real-time.
+    ### Search Functionality: Users can search for other users and view their profiles.
+    ### Responsive Design: The application is designed to be responsive, ensuring a smooth experience on both desktop and mobile devices.
 
 ## Technologies Used :-
-    * Backend: Node.js, Express.js
-    * Database: MongoDB
-    * Real-Time Communication: Socket.io
-    * Frontend: HTML, CSS, Tailwind CSS, JavaScript
-    * Authentication: JSON Web Tokens (JWT), bcrypt
+    ### Backend: Node.js, Express.js
+    ### Database: MongoDB
+    ### Real-Time Communication: Socket.io
+    ### Frontend: HTML, CSS, Tailwind CSS, JavaScript
+    ### Authentication: JSON Web Tokens (JWT), bcrypt
 
 ## Getting Started
     * Prerequisites
