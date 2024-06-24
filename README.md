@@ -51,13 +51,3 @@ mongod
 npm start
 ```
 3. Open your browser and navigate to http://localhost:3000.
-
-## Screenshots of project
-
-![image1](https://drive.google.com/file/d/1fBBWasRsj5CebzdYr4NExS7aCgsgTqm5/view?usp=sharing)
-
-![image2](https://drive.google.com/file/d/1SFQqLoiCEAw8oRx-UQlVeSW5Z3v8GjZw/view?usp=sharing)
-
-![image3](https://drive.google.com/file/d/1-pZQAOFJ33gcRAVzO2MMn3wSxp_MG-7l/view?usp=sharing)
-
-![image4](https://drive.google.com/file/d/1LcGCusigMr8QzOsdCEC3dUkJ2jSvF-yi/view?usp=sharing)
